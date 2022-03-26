@@ -54,11 +54,11 @@ vector<uint32_t> MinHash::random_uint32_universal_hash(const uint64_t x) {
     
 
 
-vector<uint32_t> MinHash::minhash_universal(const set<string>& s_set) {
+vector<uint32_t> MinHash::minhash_universal(const std::map<string, bool>& s_set) {
 
     vector<uint32_t> mh_sig(sig_len,UINT32_MAX);
-    for(string s : s_set) {
-        uint64_t xxh = static_cast<uint64_t>(XXH64(s.data(),s.size(),seed));
+    for(auto s : s_set) {
+        uint64_t xxh = static_cast<uint64_t>(XXH64(s.first.data(), s.first.size(),seed));
         vector<uint32_t> rh = random_uint32_universal_hash(xxh);
         for(int i=0; i<sig_len; i++) {
             if(rh[i] < mh_sig[i])

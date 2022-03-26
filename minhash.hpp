@@ -13,6 +13,7 @@
 #include <string>
 #include <vector>
 #include <random>
+#include <map>
 
 namespace rp {
     
@@ -22,7 +23,7 @@ public:
     
     MinHash(const unsigned sig_len=100, const unsigned seed=0);
     
-    std::vector<uint32_t> minhash_universal(const std::set<std::string>& s_set);
+    std::vector<uint32_t> minhash_universal(const std::map<std::string, bool>& s_set);
     std::vector<uint32_t> minhash_xor(const std::set<std::string>& s_set);
     
     static uint32_t shash32(const std::string s, const unsigned seed=0);
